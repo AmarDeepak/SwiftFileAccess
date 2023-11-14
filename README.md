@@ -8,10 +8,15 @@ SwiftFileAccess is a powerful solution for swiftly uploading and downloading lar
 # Key Features:
 
 🚀 Rapid Transfer: Lightning-fast upload and download speeds for handling large files efficiently.
+
 📂 Cloud Storage: Seamless integration with popular cloud services for convenient file storage.
+
 🗜️ Smart Compression: Automatically compresses files to save storage space without compromising data integrity.
+
 🌐 Secure URLs: Unique, time-limited URLs for secure and controlled access to your files.
+
 🛡️ Encryption: End-to-end encryption to safeguard your data during transit and storage.
+
 
 # Usage:
 
