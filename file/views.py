@@ -3,11 +3,11 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 # Create your views here.
-from home.serializers import FileListSerializer
+from file.serializers import FileListSerializer
 from rest_framework.parsers import MultiPartParser
 
-def home(request):
-    return render(request, 'home.html')
+def upload(request):
+    return render(request, 'upload.html')
 
 def download(request, uid):
     return render(request, 'download.html', context={'uid':uid})

@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
                 ('created', model_utils.fields.AutoCreatedField(db_index=True, default=django.utils.timezone.now, editable=False, verbose_name='created')),
                 ('modified', model_utils.fields.AutoLastModifiedField(db_index=True, default=django.utils.timezone.now, editable=False, verbose_name='modified')),
                 ('file', models.FileField(upload_to='')),
-                ('directory', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='home.directory')),
+                ('directory', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='file.directory')),
             ],
             options={
                 'abstract': False,

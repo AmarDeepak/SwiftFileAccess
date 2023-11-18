@@ -92,7 +92,7 @@ body p {
 
     <div class="text-center">
 
-        <img src="/home/media/image/undraw.svg" class="img-fluid img-responsive" style="height: 200px;">
+        <img src="/file/media/image/undraw.svg" class="img-fluid img-responsive" style="height: 200px;">
     </div>
 
   <input type="file" class="my-pond mt-4" name="filepond" />
@@ -141,14 +141,14 @@ body p {
       {
         formdata.append('files', files[i].file)
       }
-      fetch('/home/handle/',{
+      fetch('/file/handle/',{
       method: 'POST',
       headers: {'X-CSRFToken':"{{csrf_token}}"},
       body: formdata
       }).then(res => res.json())
       .then(result => {
       // DYNAMIC HOST URL NEED TO UPDATE
-      url = `http://127.0.0.1:8000/home/download/${result.data.directory}`
+      url = `http://127.0.0.1:8000/file/download/${result.data.directory}`
       })
       }
 
