@@ -29,7 +29,6 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 SITE_ID = 1
-# Application definition
 
 AUTHENTICATION_BACKEND = [
 # Needed to login by username in Django admin, regardless of `allauth`
@@ -56,7 +55,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'rest_framework',
     'file',
-
 ]
 
 MIDDLEWARE = [
