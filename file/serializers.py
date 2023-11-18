@@ -1,7 +1,7 @@
 import shutil
 
 from rest_framework import serializers
-from home.models import Directory, Files
+from file.models import Directory, Files
 
 class FileSerializer(serializers.ModelSerializer):
 
