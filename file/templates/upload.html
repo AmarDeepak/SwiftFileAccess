@@ -128,7 +128,7 @@ body p {
             FilePondPluginImagePreview,
         );
     const pond = FilePond.create(
-    document.querySelector('.my-pond')
+    document.querySelector('.my-pond'),{chunkUploads: true, chunkSize: 8000}
     );
 
     var url = null
