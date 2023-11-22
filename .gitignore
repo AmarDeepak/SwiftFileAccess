@@ -4,3 +4,5 @@
 *DB/
 *venv/
 *.vscode/
+file/__pycache__/*
+file/migrations/__pycache__/*

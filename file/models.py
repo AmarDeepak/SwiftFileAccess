@@ -9,7 +9,8 @@ class Directory(BaseTimestampedModel):
 
 def get_upload_path(instance, filename):
     print(os.path.join(str(instance.directory.uid), filename))
-    return os.path.join(str(instance.directory.uid), filename)
+    # import pdb; pdb.set_trace()
+    return os.path.join('file/static/',str(instance.directory.uid), filename)
 class Files(BaseTimestampedModel):
     directory = models.ForeignKey(Directory, on_delete=models.CASCADE)
     file = models.FileField(upload_to=get_upload_path)

@@ -52,9 +52,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.facebook',
     'rest_framework',
     'file',
+    'crispy_bootstrap4',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -74,7 +76,7 @@ ROOT_URLCONF = 'file_buddy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR/'templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -98,6 +100,15 @@ SOCIALACCOUNT_PROVIDERS = {
             'client_id': 'a6d5ccedb5b009ce4f0b',
             'secret': 'ff43c3803f10057fe156caf412b7098474611a16',
             'key': ''
+        }
+    },
+    'google':{
+        'SCOPE':[
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS':{
+            'access_type': 'online',
         }
     }
 }
@@ -159,14 +170,34 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATIC_ROOT = 'staticfiles'
-STATIC_URL = '/static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-STATICFILES_DIR = {
-    os.path.join(BASE_DIR,'public/static')
-}
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'public/static')
+STATIC_URL = '/file/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'root')
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR, 'static'),
+]
+#
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+CRISPY_TEMPLATE_PACK='bootstrap4'
+#URL will be loaded once the user logged in using github or google.
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_REDIRECT_URL = 'dashboard'
+
+ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
+
+ACCOUNT_EMAIL_REQUIRED = True
+
+SOCIALACCOUNT_QUERY_EMAIL = True
+
+ACCOUNT_SESSION_REMEMBER = True
