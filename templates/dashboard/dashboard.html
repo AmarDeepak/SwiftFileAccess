@@ -1,5 +1,4 @@
 {% extends 'account/base.html' %}
-
 {% block content %}
     <div class="text-center">
         <h2>Home</h2>
@@ -7,4 +6,71 @@
         <p>Your Username : {{ user }}</p>
         <a class="btn btn-dark" href="{% url 'socialaccount_connections' %}">Settings</a>
     </div>
+
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+
+    <div class="text-center">
+        <img src="/file/static/images/undraw.svg" class="img-fluid img-responsive" style="height: 200px;">
+    </div>
+
+    <input type="file" class="my-pond mt-4" name="filepond" />
+
+    <div class="text-center">
+        <button class="btn btn-success" onclick="upload_files()">Upload File</button>
+    </div>
+
+    <div class="carad mt-3">
+        <div class="card-bodqy">
+            <div class="background">
+                <center>
+                    <button onclick="copyClip()" class="clipboard">Click me to copy current Url</button>
+                    <p>Have you already clicked?</p>
+                </center>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/filepond/dist/filepond.min.js"
+            integrity="sha512-AuMJiyTn/5k+gog21BWPrcoAC+CgOoobePSRqwsOyCSPo3Zj64eHyOsqDev8Yn9H45WUJmzbe9RaLTdFKkO0KQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+
+    <script>
+        FilePond.registerPlugin(
+            FilePondPluginImagePreview,
+        );
+        const pond = FilePond.create(
+            document.querySelector('.my-pond'), {chunkUploads: true, chunkSize: 8000}
+        );
+
+        var url = null;
+
+        function upload_files() {
+            var files = pond.getFiles();
+            var formdata = new FormData();
+            // NEED TO USE FAST UPLOAD FOR HUGE FILES
+            // LOOKING INTO IT
+            for (var i = 0; i < files.length; i++) {
+                formdata.append('files', files[i].file);
+            }
+            fetch('/file/handle/', {
+                method: 'POST',
+                headers: {'X-CSRFToken': "{{csrf_token}}"},
+                body: formdata
+            }).then(res => res.json())
+                .then(result => {
+                    // DYNAMIC HOST URL NEED TO UPDATE
+                    url = `http://127.0.0.1:8000/file/download/${result.data.directory}`;
+                });
+        }
+
+        function copyClip() {
+            navigator.clipboard.writeText(url);
+            alert("Copied the text: " + url);
+        }
+    </script>
+
 {% endblock %}
