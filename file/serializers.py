@@ -18,7 +18,8 @@ class FileListSerializer(serializers.Serializer):
     def compress_files(self, directory):
         """ TODO: use own compression algo to reduce the file size without compromising the quatlity or data.
             TODO: store the files to any place without storing/saving it on server or inside the project directory."""
-        shutil.make_archive(f'public/static/zip/{directory}', 'zip', f'public/static/{directory}')
+        shutil.make_archive(f'static/zip/{directory}', 'zip', f'file/static/{directory}')
+
 
     def create(self, validated_data):
         directory = Directory.objects.create()
