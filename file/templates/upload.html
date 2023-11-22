@@ -93,6 +93,7 @@ body p {
     <div class="text-center">
 
         <img src="/file/static/images/undraw.svg" class="img-fluid img-responsive" style="height: 200px;">
+
     </div>
 
   <input type="file" class="my-pond mt-4" name="filepond" />
@@ -148,7 +149,6 @@ body p {
       }).then(res => res.json())
       .then(result => {
       // DYNAMIC HOST URL NEED TO UPDATE
-<!--      console.log(`${result.data.directory}`)-->
       url = `http://127.0.0.1:8000/file/download/${result.data.directory}`
       })
       }

@@ -20,6 +20,7 @@ class FileListSerializer(serializers.Serializer):
             TODO: store the files to any place without storing/saving it on server or inside the project directory."""
         shutil.make_archive(f'static/zip/{directory}', 'zip', f'file/static/{directory}')
 
+
     def create(self, validated_data):
         directory = Directory.objects.create()
         files = validated_data.pop("files")
