@@ -7,10 +7,10 @@ from file.serializers import FileListSerializer
 from rest_framework.parsers import MultiPartParser
 
 def upload(request):
-    return render(request, 'upload.html')
+    return render(request, 'file/upload.html')
 
 def download(request, uid):
-    return render(request, 'download.html', context={'uid':uid})
+    return render(request, 'file/download.html', context={'uid':uid})
 class HandleFileUpload(APIView):
     parser_classes = [MultiPartParser]
     def post(self, request):

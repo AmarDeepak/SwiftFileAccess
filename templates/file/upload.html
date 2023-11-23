@@ -149,7 +149,7 @@ body p {
       }).then(res => res.json())
       .then(result => {
       // DYNAMIC HOST URL NEED TO UPDATE
-      url = `http://127.0.0.1:8000/file/download/${result.data.directory}`
+      url = `http://127.0.0.1:8000/${result.data.directory}`
       })
       }
 

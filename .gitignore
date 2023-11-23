@@ -6,3 +6,16 @@
 *.vscode/
 file/__pycache__/*
 file/migrations/__pycache__/*
+db.sqlite3
+file/__pycache__/__init__.cpython-37.pyc
+file/__pycache__/admin.cpython-37.pyc
+file/__pycache__/apps.cpython-37.pyc
+file/__pycache__/models.cpython-37.pyc
+file/__pycache__/serializers.cpython-37.pyc
+file/__pycache__/urls.cpython-37.pyc
+file/__pycache__/views.cpython-37.pyc
+file/migrations/__pycache__/0001_initial.cpython-37.pyc
+file/migrations/__pycache__/0002_alter_files_file.cpython-37.pyc
+file/migrations/__pycache__/__init__.cpython-37.pyc
+.idea/misc.xml
+file_buddy/__pycache__/*
