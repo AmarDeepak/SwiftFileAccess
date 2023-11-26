@@ -26,11 +26,13 @@ SECRET_KEY = 'django-insecure-usigq0c_5nmwr_rlhuscp8(@0b7jhegiru(=k0=v(9=2b+&+8e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','127.0.0.1']
 
 SITE_ID = 1
 
+
 AUTHENTICATION_BACKEND = [
+    # 'gauth.backends.GoogleAuthBackend',
 # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
 
@@ -46,17 +48,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-
+    'rest_framework',
+    'file',
+    'crispy_bootstrap4',
+    'crispy_forms',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.google',
     # 'allauth.socialaccount.providers.facebook',
-    'rest_framework',
-    'file',
-    'crispy_bootstrap4',
-    'crispy_forms',
+
 ]
 
 MIDDLEWARE = [
@@ -76,7 +78,7 @@ ROOT_URLCONF = 'file_buddy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [BASE_DIR/ 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -106,11 +108,12 @@ SOCIALACCOUNT_PROVIDERS = {
         'SCOPE':[
             'profile',
             'email',
+            'https://www.googleapis.com/auth/drive',
         ],
         'AUTH_PARAMS':{
             'access_type': 'online',
-        }
-
+        },
+        'OAUTH_PKCE_ENABLED': True,
     }
 }
 
@@ -200,5 +203,6 @@ ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 ACCOUNT_EMAIL_REQUIRED = True
 
 SOCIALACCOUNT_QUERY_EMAIL = True
-
+SOCIALACCOUNT_STORE_TOKENS = True
 ACCOUNT_SESSION_REMEMBER = True
+

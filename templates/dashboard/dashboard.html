@@ -61,6 +61,8 @@
             for (var i = 0; i < files.length; i++) {
                 formdata.append('files', files[i].file);
             }
+            formdata.append('user',"{{ user }}");
+            console.log(formdata)
             fetch('/file/handle/', {
                 method: 'POST',
                 headers: {'X-CSRFToken': "{{csrf_token}}"},
